@@ -56,8 +56,8 @@ var result2;
 // ! let
 // aynı isimde değişken oluşturulamaz, değişken içeriği değiştirilebilir.
 
-let say =2;
-let say =3; // hatalı yazım
+// let say =2;
+// let say =3; // hatalı yazım
 
 // ! const
 // aynı isimde değişken oluşturulamaz, değişken içeriği değiştirilemez.
@@ -131,7 +131,7 @@ console.log(Math.round(Math.random()*9)); // rastgele sayılar üretir
 // ------------------------------------------------------------------------------------------------------------------------------------------- //
 
 // * Number
-var say = 15000;
+var say1 = 15000;
 console.log(say); 
 
 var say2 = 1.5E+4; // bilimsel yazım
@@ -229,7 +229,348 @@ console.log(value(2,5));
 let arrow = (a,b) => {sonuc = a + b; return sonuc;}
 console.log(arrow(2,5));
 
+// * Immedia function (çağırmadan direkt gelen fonksiyon)
+(function(){
+    console.log("immedia function");
+})();
+
 // ------------------------------------------------------------------------------------------------------------------------------------------- //
+
+// ! CONDITION (IF-ELSE)
+
+// * farklı yazımlarla if else yapısı;
+const condi = () =>{
+    let num = 4;
+    if(num >= 2){
+        console.log("büyüktür");
+    }
+    else{
+        console.log("küçüktür");
+    }
+};
+condi();
+
+const condi2 = () =>{
+    let num = 4;
+    if(num >= 2)
+        console.log("büyüktür");
+    else
+        console.log("küçüktür");
+};
+condi2();
+
+const condi3 = () =>{
+    let num = 4;
+    let result = (num >= 2) ? "büyüktür" : "küçüktür"; // * ternary operatörü (?:)
+};
+condi3();
+
+const condi4 = () =>{
+    let num = 4;
+    console.log((num >= 2) ? "büyüktür" : "küçüktür");
+};
+condi4();
+
+// * birden fazla if else yapısı
+const condi5 = () =>{
+    let num = 4;
+    if(num == 1){
+        console.log("1");
+    }
+    else if(num == 2){
+        console.log("2");
+    }
+    else if(num == 3){
+        console.log("3");
+    }
+    else if(num == 4){
+        console.log("4");
+    }
+    else{
+        console.log("object");
+    }
+};
+condi5();
+
+// * switch-case
+const condi6 = () =>{
+    let num = 4;
+    switch (num) {
+        case 1:
+            console.log("1");
+            break;
+        case 2:
+            console.log("2");
+            break;
+        case 3:
+            console.log("3");
+            break;
+        case 4:
+            console.log("4");
+            break;
+        default:
+            console.log("object");
+            break;
+    }
+};
+condi6();
+
+// ------------------------------------------------------------------------------------------------------------------------------------------- //
+
+// ! LOOP
+
+// * break    => döngüyü kırma
+// * return   => metod kırma
+// * continue => bir kereye mahsus atlayıp döngüyü devam ettirme
+
+// * for döngüsü
+let loop = () => {
+    for (let i = 0; i <= 10; i++) {
+        console.log(i);
+    }
+}
+loop();
+
+// * while döngüsü (sonsuz döngüler için kullanılır)
+let loop2 = () => {
+    let i = 1;
+    while(i <= 10){
+        console.log(i);
+        i++;
+    }
+}
+loop2();
+
+// * do while döngüsü (do bir kere çalışır ve sonra while kontrol edilir)
+let loop3 = () => {
+    let i = 1;
+    do{
+        console.log(i);
+        i++;
+    }
+    while(i <= 10);
+}
+loop3();
+
+// ------------------------------------------------------------------------------------------------------------------------------------------- //
+
+// ! TRY-CATCH (hata ayıklama için )
+
+let tryCatch = () => {
+    try {
+        alertx("try");
+    } catch (error) {
+        console.log("catch " + error.message); // hatayı yazdırma
+        console.log("catch " + error.name); // hatayı tanımsal yazdırma
+        console.error("catch " + error); // hatayı tüm detaylarıyla görüntüleme
+    } finally{
+        console.log("db.close"); // her koşulda çalışması gereken kodlar
+    }
+}
+tryCatch();
+
+// ------------------------------------------------------------------------------------------------------------------------------------------- //
+
+// ! DEBUG (hata ayıklama)
+
+// debug yapılacak satırlar tıklanarak breakpoint olarak ayarlanır.
+// debug seçildiğinde chrome seeneğini seçip oluşturduğu json dosyasına proje linkini yapıştırıyoruz.
+// ardından launch kısmından çalıştırıyoruz. 
+const debugData = () => {
+    let sum = 0;
+    for (let i = 0; i <= 10; i++) {
+        sum += i;
+    }
+    console.log("toplam : " + sum);
+}
+debugData();
+
+// ------------------------------------------------------------------------------------------------------------------------------------------- //
+
+// ! SOFTWARE PRINCIBLES
+
+// * KISS : (keep it simple,stupid) tasarımı basit tutmayı ve gereksiz karmaşıklıktan kaçınmayı amaçlar.
+
+// * YAGNI : (you aren't gonna need it) sadece mevcut ihtiyaçlara odaklanılması gerektiğini savunur ve gereksinimler ortaya çıkmadan önce 
+// * gereksiz özellikler eklemekten kaçınılması gerektiğini ifade eder.
+
+// * SOLID : 5 temel prensibi temsil eder;
+// * S: (Single responsbility princible) Bir sınıfın veya modülün tek sorumluluğu olması.
+// * O: (Open / closed princible) Mevcut kodu değiştirmeden yeni özellikler eklemek mümkün olmalıdır.
+// * L: (Liskow substitution princible) Türetilmiş bir sınıf üst sınıfın davranışını değiştirmemeli ancak genişletmelidir.
+// * I: (Interface segregation princible) Arayüzler işlevsel olmalı ve gereksiz metodlar içermemelidir.
+// * D: (Dependency Inversion princible) Yüksek seviyeli modüller düşük seviyeli modüllere bağlı olmamalıdır.
+
+// * CLEAN CODE : kodun karmaşıklığını azaltmak, gereksiz detayları ortadan kaldırmak
+
+// * SPAGHETTI CODE : kötü kodlama uygulamalarının bir sonucu olarak ortaya çıkan karmaşık, okunması zor ve bakımı zor olan bir kod tabanını tanımlar.
+
+// * DUMMY CODE : sahte veya örnek kod, bir yazılım geliştiricinin bir konsepti anlamak veya bir problemi çözmek için kullanabileceği basit, işlevsiz kod parçasıdır.
+
+// ------------------------------------------------------------------------------------------------------------------------------------------- //
+
+// ! Monad
+// * Bir fonksiyonun çıktısı, başka bir fonksiyonun girdisi ise buna monad denir.
+
+const first = () => {
+    let user = Number(prompt("Lütfen bir sayı giriniz : "))
+    return user;
+}
+const second = () => {
+    let data = first();
+    console.log(Math.sqrt(data));
+}
+second();
+
+// ------------------------------------------------------------------------------------------------------------------------------------------- //
+
+// ! setTimeOut() , setInterval()
+
+// * settimeout : belirlenen zaman sonra çalışır. 1 kere çalışır.
+setTimeout(function(){
+    console.log("setTimeOut Çalıştı");
+},2000)
+
+// * setInterval : belirlenen zaman sonra çalışır ve sonsuza kadar devam eder.
+setInterval(function(){
+    console.log("setinterval Çalıştı");
+},2000)
+
+// ------------------------------------------------------------------------------------------------------------------------------------------- //
+
+// ! callbackfunction
+// * Farklı fonksiyonlar arasında bilgi akışı sağlamamıza yarar. Fonksiyonlar arasında işlemler sürer. Karmaşık yapılar oluşur.
+
+const ilk = (data) => {
+    return Math.pow(data,2);
+}
+
+const iki = (callbackfunction) => {
+    let user = Number(prompt("Lütfen bir sayı giriniz : "))
+    let data = callbackfunction(user);
+    console.log(data);
+}
+
+second(first);
+
+// ! promise
+// * callbackfunction'dan çok daha kısa yazım ile fonksiyonlar arası çalışmayı sağlar.
+// * catch bir tane olmak zorunda
+
+const prom = () => {
+    let data = new Promise((resolve, reject) => {
+        let status = 200;
+        if (status === 200){
+            resolve("çalıştı"); // olumlu sonuç ise then içine girer
+        }else{
+            reject("çalışmadı"); // olumsuz sonuç catch içine girer
+        }
+    }).
+    then(() => {
+        console.log("olumlu");
+    }).
+    catch((err) => {
+        console.error(err);
+    }); 
+}
+prom();
+
+// ------------------------------------------------------------------------------------------------------------------------------------------- //
+
+// ! FIFO (First-In-First-Out) ve LIFO (Last-In-First-Out) terimleri
+// * veri yapısı olan veri kümelerini veya koleksiyonları işlerken sıkça kullanılır. 
+// * Bu iki terim, verilerin koleksiyondan nasıl alındığını ve sıralandığını tanımlar.
+
+// * FIFO (First-In-First-Out): Bu kavram, ilk giren ilk çıkar anlamına gelir. Yani, veri koleksiyonuna eklenen ilk öğe, 
+// * koleksiyondan çıkarılmak istendiğinde ilk olarak çıkarılır. FIFO sıralama, bir sırayla işleme ve kuyruk mantığına uyar. 
+// * Örnek olarak, bir sıra oluştururken veya işlemleri sırayla işlerken FIFO kullanılabilir.
+
+// * LIFO (Last-In-First-Out): Bu kavram, son giren ilk çıkar anlamına gelir. Yani, veri koleksiyonuna eklenen son öğe, 
+// * koleksiyondan çıkarılmak istendiğinde ilk olarak çıkarılır. LIFO sıralama, bir yığın (stack) yapısına benzer ve son eklenen öğeler önce çıkarılır. 
+// * Örnek olarak, geri alma (undo) işlemi veya işlem yığınlama (call stack) gibi senaryolarda LIFO kullanılabilir.
+
+// ------------------------------------------------------------------------------------------------------------------------------------------- //
+
+// ! dizi Iterative for , for in, for of, foreach, map, filter, fill
+
+let arr = () => {
+    const numbers = [1,2,3,4,5,6,7,8,9,10]
+    return numbers;
+}
+arr();
+
+let arrResult = () => {
+    let data = arr();
+    console.log(data);
+    console.log(data[data.length - 1]); // son elemana ulaşma
+
+    // ? Iterative for loops
+    for (let i = 0; i < data.length; i++) {
+        document.write(data[i] + " ");
+    }
+    document.write("<br/>");
+    
+    // ? for in
+    for(let temp in data){
+        document.write(temp + "=>" + data[temp] + " ");
+    }
+    document.write("<br/>");
+
+    // ? for of
+    for(let temp of data){
+        document.write(temp + " ");
+    }
+    document.write("<br/>");
+
+    // ? foreach
+    //   forEach(callbackfn: (value: T, index: number, array: T[]) => void, thisArg?: any): void;
+    data.forEach(element => {
+        document.write(element + " ");
+    });
+    document.write("<br/>");
+    data.forEach(function(value, index,array){
+        document.write(`${index} => ${value} <br/> ${array} `);
+    })
+
+    // ? filter
+    let result1 = data.filter((value, index,array) => {
+        return value % 2 == 0;
+    }).forEach(function(value, index,array){
+        document.write(`${index} => ${value} <br/>`);
+    })
+    console.log(result1);
+
+    // ? map
+    let result2 = data.map((value, index,array) => {
+        return value += 10;
+    })
+    console.log(result2);
+
+}
+arrResult();
+
+
+// ! dizi metotları
+
+let data = [0,1,2,3,4,5,6,7,8,9];
+
+console.log(data.length); // * eleman sayısı
+
+data.push(99); // * dizi sonuna eleman ekleme
+
+data.unshift(11); // * dizi başına eleman ekleme
+
+data.pop(); // * dizi sondan eleman siler
+
+data.shift(); // * dizi başından eleman siler
+
+data.sort(); // * diziyi küçükten büyüğe sıralar
+
+data.reverse() // * diziyi terse çevirir
+
+console.log(data.toString()); // * diziyi stringe çevirme
+
+console.log(data);
 
 
 
