@@ -45,7 +45,7 @@ KONULAR:
 5. Cast İşlemleri
   - Number to String
   - String to Number
-6. String Metodları
+6. String Metotları
   - trim
   - toLowerCase
   - toUpperCase
@@ -62,7 +62,44 @@ KONULAR:
   - parametreli ve değer döndüren
   - anonymous function
   - arrow function
-
+  - immedia function
+8. Karşılaştırma Operatörleri
+  - if else
+  - switch case
+9. Döngüler (loop)
+  - for
+  - while
+  - do while
+10. Try-catch
+11. Debug
+12. Yazılım Prensipleri
+  - KISS
+  - YAGNI
+  - SOLID
+  - CLEAN CODE
+  - SPAGHETTI CODE
+  - DUMMY CODE
+13. Monad
+14. SetTimeOut - SetInterval
+15. CallbackFunction
+16. Promise
+17. FIFO - LIFO
+18. Dizi Döngüler
+  - Iterative for
+  - for in
+  - for of
+  - foreach
+  - filter
+  - map
+19. Dizi Metotları
+  - push
+  - length
+  - unshift
+  - pop
+  - shift
+  - sort
+  - reverse
+  - toString
 
 
 
