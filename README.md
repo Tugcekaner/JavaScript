@@ -100,7 +100,16 @@ KONULAR:
   - sort
   - reverse
   - toString
-
+20. JSON ve XML
+21. Object Constructor
+22. Call, apply, bind
+  - parametreli
+  - parametresiz
+23. Obje ve dizilerle callback - promise
+24. Event
+25. Dom işlemleri
+26. Listener
+27. Local Storage
 
 
 
