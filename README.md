@@ -1,5 +1,5 @@
 # JavaScript
-JavaScript Döküman
+JavaScript Doküman
 
 JavaScript için en temelden başlayarak oluşturduğum döküman.
 
