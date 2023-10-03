@@ -572,6 +572,301 @@ console.log(data.toString()); // * diziyi stringe çevirme
 
 console.log(data);
 
+// ------------------------------------------------------------------------------------------------------------------------------------------- //
+
+// ! JSON ve XML arasındaki farklar
+
+// JSON (JavaScript Object Notation) ve XML (eXtensible Markup Language), veri depolamak, iletmek ve yapılandırmak için kullanılan iki farklı 
+// veri biçimidir. Her ikisi de veri taşıma amaçları için kullanılabilir, ancak bazı temel farklar vardır:
+
+// * Sözdizimi:
+// JSON: JSON, JavaScript tabanlı bir veri biçimidir ve verileri anahtar-değer çiftleri olarak depolar. 
+// Veriler, çoğunlukla JSON nesneleri olarak adlandırılan süslü parantezler { } içinde depolanır. 
+// Anahtarlar metin (dize) olmalıdır ve değerler dize, sayı, mantık, nesne, dizi veya null olabilir.
+// XML: XML, metin tabanlı bir veri biçimidir ve açılış ve kapanış etiketleri kullanarak verileri yapılandırır. 
+// Her öğe (element) bir açılış etiketi (<tag>) ve bir kapanış etiketi (</tag>) ile çevrelenir. 
+// XML, kullanıcı tarafından tanımlanan etiketler kullanılarak daha karmaşık veri yapılarını ifade etmek için esnek bir yapı sunar.
+
+// * Okunabilirlik:
+// JSON: JSON, insanlar için daha okunabilir bir formatta olabilir. Veriler genellikle düzgün biçimlendirilmiş ve hızlıca anlaşılabilir.
+// XML: XML, insanlar için daha zor okunabilir olabilir, özellikle büyük ve karmaşık belgelerde. 
+// Etiketler, verileri çevrelerken fazladan işaretleme gerektirir.
+
+// * Veri Taşıma Amaçları:
+// JSON: JSON, web uygulamaları ve RESTful API'ler gibi modern uygulama geliştirme senaryoları için sıklıkla tercih edilir. 
+// JavaScript ile kolayca işlenebilir.
+// XML: XML, veri belgelerini değişiklik yapma veya verileri dönüştürme gerektiren çok sayıda iş süreci ve endüstri standardında kullanılır. 
+// Özellikle B2B veri alışverişi ve belge depolama için kullanışlıdır.
+
+// * Veri Boyutu:
+// JSON: JSON verileri genellikle daha az karakter içerir, bu nedenle daha küçük veri boyutlarına sahiptir. 
+// Bu, JSON'un daha hızlı ağ iletimine ve daha düşük bant genişliği gereksinimlerine yol açabilir.
+// XML: XML verileri daha fazla metin içerir ve bu nedenle JSON'a göre daha büyük veri boyutlarına sahiptir.
+// Her iki formatın da avantajları ve dezavantajları vardır ve kullanılacakları bağlama bağlıdır. 
+// JSON, modern web uygulamaları ve hızlı veri iletimi için sıklıkla tercih edilirken, XML daha esnek ve endüstri standartlarına daha uygun olabilir.
+
+// ------------------------------------------------------------------------------------------------------------------------------------------- //
+
+// ! object
+
+let objectTutorial = () => {
+
+    const personObj = { // * obje
+        name: 'John',
+        "surname" : `doe`,
+        number : 1,
+        isLogin : false,
+        "software" : ["HTML", "CSS"], // * obje içerisinde dizi kullanma
+        fullname:function(){   // * obje içerisinde fonksiyon
+            return this.name + " " + this.surname;
+        }
+    };
+    console.log(personObj); 
+    console.log(personObj.name); // * variable
+    console.log(personObj["surname"]); // * variable nested 
+    console.log(personObj.software[0]); // * obje içindeki dizinin indeksine ulaşma
+
+    const objectToString = JSON.stringify(personObj); // * objeyi stringe çevirme
+    console.log(objectToString); 
+    const stringToObject = JSON.parse(objectToString); // * stringi objeye çevirme
+    console.log(stringToObject); 
+
+    personObj.lang = "english"; // * object variable (objeye ekleme yapma)
+    console.log(personObj.lang);
+
+    console.log(personObj.fullname()); // * obje içindeki fonksiyonu yazdırma
+}
+objectTutorial();
+
+// ------------------------------------------------------------------------------------------------------------------------------------------- //
+
+// ! object constructor
+let objectConstructor = () => {
+    
+    let personCons = function(name,surname){
+        this.name = name;
+        this.surname = surname;
+        console.log(this);
+    };
+
+    let personResult = new personCons("Tuğçe","KANER");
+    let person2 = new personCons("Berk","KURAL");
+}
+objectConstructor();
+
+// ------------------------------------------------------------------------------------------------------------------------------------------- //
+
+// ! call, apply, bind
+
+// * parametresiz
+let noParameterCallApplyBind = () => {
+
+    let functionOtherObject = function(){
+        console.log(`Parametresiz Function : ${this.adi}`);
+    }
+
+    let objectData = {
+        "adi" : "Tuğçe",
+    };
+
+    functionOtherObject.call(objectData);
+    functionOtherObject.apply(objectData);
+    let deneme = functionOtherObject.bind(objectData);
+    deneme();
+}
+noParameterCallApplyBind();
+
+// * parametreli
+let ParameterCallApplyBind = () => {
+
+    let functionOtherObject = function(surname){
+        console.log(`Parametresiz Function : ${this.adi} => ${surname}`);
+    }
+
+    let objectData = {
+        "adi" : "Tuğçe",
+    };
+
+    functionOtherObject.call(objectData,"KANER");
+    functionOtherObject.apply(objectData,["KANER"]);
+    let deneme2 = functionOtherObject.bind(objectData,"KANER");
+    deneme2();
+}
+ParameterCallApplyBind();
+
+// ------------------------------------------------------------------------------------------------------------------------------------------- //
+
+// ! obje ve dizilerle callback - promise örneği
+
+// * callback ile
+let callbackfunctionComputer = () => {
+
+    const computerObject1 = { // * 1. objelerle yazım
+        computerName : "callback computer 1",
+        price : 100,
+    };
+    const computerObject2 = {
+        computerName : "callback computer 2",
+        price : 200,
+    };
+    const computerObject3 = {
+        computerName : "callback computer 3",
+        price : 300,
+    };
+
+    const computerArray = [ // * 2. objeleri dizi içerisinde toplama
+        {computerName : "callback computer 1", price : 100,},
+        {computerName : "callback computer 2", price : 200,},
+        {computerName : "callback computer 3", price : 300,}
+    ];
+
+    const computerArray2 = []; // * 3. diziyi objelerle random oluşturma
+    for (let i = 0; i < 5; i++) {
+        let computerObject = {
+            computerName : "computer " + (i + 1), 
+            price : (i + 1) * 100
+        };
+        computerArray2.push(computerObject);
+    }
+    console.log(computerArray2);
+
+    for (let i = 0; i < computerArray2.length; i++) { // * dizideki objelerin tek bir değer karşılığını yazdırma
+        console.log(computerArray2[i].computerName);
+    }
+    const arrayincomputerName = () => { // * map ile değer yazdırma
+        computerArray2.map((temp) =>{
+            console.log(`${temp.computerName}`);
+        })
+    }
+    arrayincomputerName();
+
+    const arrayInPrice = (price,callBackFnc) => { 
+        computerArray2.push(price);
+        callBackFnc();
+    }
+
+    arrayInPrice({computerName: "computer 6", price : 600},arrayincomputerName);
+}
+callbackfunctionComputer();
+
+// * promise ile 
+let promiseComputer = () => {
+
+    const computerArray = [ // * 2. objeleri dizi içerisinde toplama
+        {computerName : "callback computer 1", price : 100,},
+        {computerName : "callback computer 2", price : 200,},
+        {computerName : "callback computer 3", price : 300,}
+    ];
+
+    const computerArray2 = []; // * 3. diziyi objelerle random oluşturma
+    for (let i = 0; i < 5; i++) {
+        let computerObject = {
+            computerName : "computer " + (i + 1), 
+            price : (i + 1) * 100
+        };
+        computerArray2.push(computerObject);
+    }
+    console.log(computerArray2);
+
+    for (let i = 0; i < computerArray2.length; i++) { // * dizideki objelerin tek bir değer karşılığını yazdırma
+        console.log(computerArray2[i].computerName);
+    }
+    const arrayincomputerName = () => { // * map ile değer yazdırma
+        computerArray2.map((temp) =>{
+            console.log(`${temp.computerName}`);
+        })
+    }
+    arrayincomputerName();
+
+    const arrayInComputerObject = (obj) =>{
+        const promiseReturn = new Promise(() => {
+            computerArray2.push(obj);
+        })
+        return promiseReturn;
+    }
+    arrayInComputerObject({computerName: "computer 6", price : 600})
+    .then((response) => {console.log(response);})
+    .catch((err) => {console.error(err);})
+}
+promiseComputer();
+
+// ------------------------------------------------------------------------------------------------------------------------------------------- //
+
+// ! event
+
+// * buttonlar ile olay tetikleme
+let eventFunction = () => {
+    console.log("event çalıştı");
+}
+
+// ------------------------------------------------------------------------------------------------------------------------------------------- //
+
+// ! DOM
+
+// * Document Object Model
+// * Projedeki HTML, CSS ve JS manipülasyonu / yönlendirmesi denebilir.
+let newDataDate = () => {
+
+    // * HTML
+    let now = document.getElementById("text-data");  // * butona tıklandığında text içeriği güncelleme
+    now.innerHTML = "<b><i>" + new Date().getFullYear() + "</i></b>";
+
+    // * CSS
+    now.style.color = "yellow"; 
+    now.style.backgroundColor = "black";
+    now.style.padding = ".5rem";
+}
+
+// ! dom işlemleri için element seçim yöntemleri;
+// ? document.getElementById => id'ye göre
+// ? document.getElementsByClassName[i] => i indeksindeki class'a göre
+// ? document.getElementsByTagName => tag'a göre
+// ? document.querySelector => daha rahat bir seçim, class, id kullanılabilir
+
+// * sayfa geçişi 
+let outside = () =>{
+    let userinfo = window.confirm("Farklı bir sayfaya gitmek ister misiniz ?")
+    ? window.location = "https://www.linkedin.com/feed/"
+    : window.alert("Bu sayfada kalındı.");
+}
+
+// ------------------------------------------------------------------------------------------------------------------------------------------- //
+
+// ! listener
+
+// * olay dinleme
+let userListener = () => {
+    let listenerParag = document.getElementById("parag2_id");
+    listenerParag.addEventListener("click", function(e){
+        alert(e.preventDefault + " " + e.target);
+        document.getElementById("log-admin").innerHTML = "okundu";        
+    });
+}
+userListener();
+
+// ------------------------------------------------------------------------------------------------------------------------------------------- //
+
+// ! local storage
+// * verileri database ya da browser'da saklanır. Localstorage ise veri saklamak için kullanılır, sadece lokal bilgisayarda kullanılabilir.
+// * tarayıcı üzerine kayıt yapar.
+let localData = () => {
+    // * locale bilgi kaydetme
+   const name = localStorage.setItem("name", "Tuğçe");
+   const surname = localStorage.setItem("surname", "KANER");
+
+    // * localden bilgi çekme
+   const getName = localStorage.getItem("name");
+   console.log(getName);
+
+    // * belirtilen key silme
+   localStorage.removeItem("name");
+
+    // * tüm local storage temizleme
+    localStorage.clear();
+}
+localData();
+
+// ------------------------------------------------------------------------------------------------------------------------------------------- //
 
 
 
