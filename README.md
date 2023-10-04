@@ -1,7 +1,7 @@
 # JavaScript
 JavaScript Doküman
 
-JavaScript için en temelden başlayarak oluşturduğum döküman.
+JavaScript için en temelden başlayarak oluşturduğum doküman.
 
 KONULAR:
 
